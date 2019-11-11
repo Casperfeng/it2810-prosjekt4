@@ -24,8 +24,9 @@ export default function PokemonList() {
       data={pokemon}
       renderItem={({ item }) => (
         <Pokemon
-          name={item.name}
           id={item.id}
+          stats={item.stats}
+          name={item.name}
           types={item.types}
           views={item.views}
         />
