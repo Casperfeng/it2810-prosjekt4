@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { FlatList } from 'react-native';
 import { fetchPokemon } from '../../redux/ducks/pokemonDuck';
 import Pokemon from './Pokemon/Pokemon';
 
