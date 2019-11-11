@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { closeModal } from '../../redux/ducks/modalDuck';
 import { colorFromType } from '../../common/constants';
+import FavoriteButton from '../FavoriteButton/FavoriteButton';
 
 function PokemonModal() {
   const dispatch = useDispatch();
@@ -38,10 +39,7 @@ function PokemonModal() {
     modal = (
       <View style={styles.modal}>
         <View style={styles.modalheader}>
-          <Image
-            style={{ width: 30, height: 30 }}
-            source={require('../../assets/favorite_icon_off.png')}
-          ></Image>
+          <FavoriteButton pokemonId={modalInfo.id} />
           <Text style={{ fontSize: 20 }}>#{formattedID()}</Text>
           <TouchableHighlight onPress={() => dispatch(closeModal())}>
             <Image
