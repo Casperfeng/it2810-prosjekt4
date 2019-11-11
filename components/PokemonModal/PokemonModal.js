@@ -1,13 +1,24 @@
 import React from 'react';
-import { StyleSheet, Image, Text, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  StyleSheet,
+  Image,
+  Text,
+  View,
+  TouchableHighlight
+} from 'react-native';
+import { closeModal } from '../../redux/ducks/modalDuck';
 import { colorFromType } from '../../common/constants';
 
-function PokemonModal(props) {
+function PokemonModal() {
+  const dispatch = useDispatch();
+  const modalInfo = useSelector(state => state.modalInfo);
+  let modal = <View></View>;
   /**
    * Returns the id formatted as three digits.
    */
   function formattedID() {
-    const id = props.modalInfo.id;
+    const id = modalInfo.id;
     let toReturn = '';
     if (id < 100) toReturn += '0';
     if (id < 10) toReturn += '0';
@@ -18,60 +29,67 @@ function PokemonModal(props) {
    * * Returns the type with the corresponding index. If no type exists, return an empty string;
    */
   function type(index) {
-    const types = props.modalInfo.types;
+    const types = modalInfo.types;
     if (index >= types.length) return '';
     return types[index];
   }
-  return (
-    <View style={styles.modal}>
-      <View style={styles.modalheader}>
-        <Image
-          style={{ width: 30, height: 30 }}
-          source={require('../../assets/favorite_icon_off.png')}
-        ></Image>
-        <Text style={{ fontSize: 20 }}>#{formattedID()}</Text>
-        <Image
-          style={{ width: 30, height: 30 }}
-          source={require('../../assets/close_button.png')}
-        ></Image>
-      </View>
-      <Text style={styles.modalText}>{props.modalInfo.name}</Text>
-      <View style={styles.modalContainer}>
-        <Image
-          style={styles.modalImage}
-          source={{
-            uri:
-              'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' +
-              formattedID() +
-              '.png'
-          }}
-          alt={props.modalInfo.name}
-        />
-        <View style={styles.modalTypes}>
-          <Text style={styles.typeHeader}>Types</Text>
-          <Text
-            style={{
-              ...styles.typeText,
-              backgroundColor: colorFromType[type(0)]
+
+  if (modalInfo.show) {
+    modal = (
+      <View style={styles.modal}>
+        <View style={styles.modalheader}>
+          <Image
+            style={{ width: 30, height: 30 }}
+            source={require('../../assets/favorite_icon_off.png')}
+          ></Image>
+          <Text style={{ fontSize: 20 }}>#{formattedID()}</Text>
+          <TouchableHighlight onPress={() => dispatch(closeModal())}>
+            <Image
+              style={{ width: 30, height: 30 }}
+              source={require('../../assets/close_button.png')}
+            ></Image>
+          </TouchableHighlight>
+        </View>
+        <Text style={styles.modalText}>{modalInfo.name}</Text>
+        <View style={styles.modalContainer}>
+          <Image
+            style={styles.modalImage}
+            source={{
+              uri:
+                'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' +
+                formattedID() +
+                '.png'
             }}
-          >
-            {type(0)}
-          </Text>
-          {type(1) != '' && (
+            alt={modalInfo.name}
+          />
+          <View style={styles.modalTypes}>
+            <Text style={styles.typeHeader}>Types</Text>
             <Text
               style={{
                 ...styles.typeText,
-                backgroundColor: colorFromType[type(1)]
+                backgroundColor: colorFromType[type(0)]
               }}
             >
-              {type(1)}
+              {type(0)}
             </Text>
-          )}
+            {type(1) != '' && (
+              <Text
+                style={{
+                  ...styles.typeText,
+                  backgroundColor: colorFromType[type(1)]
+                }}
+              >
+                {type(1)}
+              </Text>
+            )}
+          </View>
         </View>
+        <View style={styles.modalStats}></View>
       </View>
-      <View style={styles.modalStats}></View>
-    </View>
-  );
+    );
+  }
+
+  return <>{modal}</>;
 }
 const styles = StyleSheet.create({
   modal: {
@@ -81,7 +99,7 @@ const styles = StyleSheet.create({
     left: 0,
     width: '100%',
     height: '100%',
-    padding: 10,
+    padding: 40,
     justifyContent: 'space-between',
     backgroundColor: 'white'
   },

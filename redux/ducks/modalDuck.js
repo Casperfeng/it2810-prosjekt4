@@ -22,8 +22,7 @@ export function openModal(
     id: 0,
     types: [],
     stats: [],
-    name: '',
-    views: 0
+    name: ''
   }
 ) {
   return dispatch =>
