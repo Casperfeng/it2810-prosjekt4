@@ -10,6 +10,7 @@ import {
 import { closeModal } from '../../redux/ducks/modalDuck';
 import { colorFromType } from '../../common/constants';
 import FavoriteButton from '../FavoriteButton/FavoriteButton';
+import PokemonStats from './PokemonStats/PokemonStats';
 
 function PokemonModal() {
   const dispatch = useDispatch();
@@ -40,10 +41,10 @@ function PokemonModal() {
       <View style={styles.modal}>
         <View style={styles.modalheader}>
           <FavoriteButton pokemonId={modalInfo.id} />
-          <Text style={{ fontSize: 20 }}>#{formattedID()}</Text>
+          <Text style={{ fontSize: 16 }}>#{formattedID()}</Text>
           <TouchableHighlight onPress={() => dispatch(closeModal())}>
             <Image
-              style={{ width: 30, height: 30 }}
+              style={{ width: 25, height: 25 }}
               source={require('../../assets/close_button.png')}
             ></Image>
           </TouchableHighlight>
@@ -82,7 +83,9 @@ function PokemonModal() {
             )}
           </View>
         </View>
-        <View style={styles.modalStats}></View>
+        <View style={styles.modalStats}>
+          <PokemonStats stats={modalInfo.stats}></PokemonStats>
+        </View>
       </View>
     );
   }
@@ -114,7 +117,7 @@ const styles = StyleSheet.create({
   },
   modalText: {
     textAlign: 'center',
-    fontSize: 30,
+    fontSize: 24,
     marginTop: 10,
     textTransform: 'capitalize'
   },
@@ -135,12 +138,12 @@ const styles = StyleSheet.create({
   typeHeader: {
     margin: 'auto',
     textAlign: 'center',
-    fontSize: 20
+    fontSize: 16
   },
   typeText: {
     margin: 'auto',
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 16,
     borderRadius: 5,
     color: 'white',
     textTransform: 'capitalize'
@@ -149,7 +152,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: '#3498db',
     color: 'white',
-    height: '50%'
+    height: '60%'
   }
 });
 
