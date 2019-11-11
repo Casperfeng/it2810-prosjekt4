@@ -3,8 +3,8 @@ import _ from 'lodash';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { updateSearch } from '../../redux/ducks/searchDuck';
-import { colorFromType } from '../../common/constants';
 import Filterbutton from './Filterbutton/Filterbutton';
+import PokemonPicker from './PokemonPicker.js/PokemonPicker';
 
 export default function Searchbar() {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ export default function Searchbar() {
         />
       </View>
       <View style={styles.pokemonDropdownContainer}>
-        <Text>Dropdown</Text>
+        <PokemonPicker />
       </View>
       <Text style={styles.filterText}>Filter by:</Text>
       <View style={styles.filterbuttonContainer}>
@@ -76,10 +76,10 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
 
-  pokemonDropdownContainer: {},
-
   filterText: {
-    color: 'gray'
+    fontSize: 16,
+    color: 'gray',
+    marginTop: 20
   },
 
   filterbuttonContainer: {
