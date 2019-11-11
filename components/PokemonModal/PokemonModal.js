@@ -41,10 +41,10 @@ function PokemonModal() {
       <View style={styles.modal}>
         <View style={styles.modalheader}>
           <FavoriteButton pokemonId={modalInfo.id} />
-          <Text style={{ fontSize: 16 }}>#{formattedID()}</Text>
+          <Text style={styles.idText}>#{formattedID()}</Text>
           <TouchableHighlight onPress={() => dispatch(closeModal())}>
             <Image
-              style={{ width: 25, height: 25 }}
+              style={{ width: 60, height: 60 }}
               source={require('../../assets/close_button.png')}
             ></Image>
           </TouchableHighlight>
@@ -104,12 +104,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: 'white'
   },
+  idText: {
+    fontSize: 16,
+    marginTop: 20
+  },
   modalheader: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 20,
-    marginBottom: -20
+    marginLeft: -20,
+    marginRight: -20
   },
   viewsContainer: {
     display: 'flex',

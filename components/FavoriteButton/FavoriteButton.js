@@ -97,9 +97,9 @@ export default function FavoriteButton(props) {
 
   return (
     <View>
-      <TouchableOpacity onPress={onClick} style={{ width: 30, height: 30 }}>
+      <TouchableOpacity onPress={onClick} style={{ width: 60, height: 60 }}>
         {icon != '' && (
-          <Image style={{ width: 30, height: 30 }} source={icon} />
+          <Image style={{ width: 60, height: 60 }} source={icon} />
         )}
       </TouchableOpacity>
     </View>
