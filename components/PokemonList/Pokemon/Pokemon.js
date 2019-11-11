@@ -8,13 +8,21 @@ import {
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
+import { openModal } from '../../../redux/ducks/modalDuck';
 import { colorFromType } from '../../../common/constants';
 
 export default function Pokemon(props) {
   const dispatch = useDispatch();
 
   function _onPressListItem() {
-    console.log('pressed');
+    dispatch(
+      openModal({
+        id: props.id,
+        stats: props.stats,
+        name: props.name,
+        types: props.types
+      })
+    );
   }
 
   return (

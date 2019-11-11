@@ -3,7 +3,6 @@ import axios from 'axios';
 // Actions
 const FETCH_POKEMON_SUCCESS = 'FETCH_POKEMON_SUCCESS';
 const FETCH_POKEMON_FAILURE = 'FETCH_POKEMON_FAILURE';
-const UPDATE_VIEW = 'UPDATE_VIEW';
 
 // Reducer
 export default function pokemonReducer(state = [], action) {
@@ -19,14 +18,6 @@ export default function pokemonReducer(state = [], action) {
         'Pokemon loading error, check if backend is connected properly'
       );
       return state;
-    case UPDATE_VIEW:
-      const incrementView = view => view + 1;
-      const newState = state.map(pokemon =>
-        pokemon.id === action.payload
-          ? { ...pokemon, views: incrementView(pokemon.views) }
-          : { ...pokemon }
-      );
-      return newState;
     default:
       return state;
   }
@@ -82,11 +73,4 @@ export function fetchPokemon(
       )
       .then(response => dispatch(fetchPokemonSuccess(response, loadMore)))
       .catch(err => dispatch(fetchPokemonFailure(err)));
-}
-
-export function updateView(id) {
-  return {
-    type: UPDATE_VIEW,
-    payload: id
-  };
 }
