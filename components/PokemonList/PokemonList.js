@@ -31,6 +31,19 @@ export default function PokemonList() {
         />
       )}
       keyExtractor={item => item._id}
+      //Fetches new pokemon dynamically by scrolling
+      onEndReached={() =>
+        dispatch(
+          fetchPokemon(
+            pokemon.length,
+            types,
+            search,
+            sortInfo.sortBy,
+            sortInfo.ascending,
+            true
+          )
+        )
+      }
     />
   );
 }

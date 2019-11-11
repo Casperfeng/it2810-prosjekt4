@@ -27,16 +27,21 @@ export default function Filterbutton(props) {
 
 const styles = StyleSheet.create({
   activeButton: {
+    width: 70,
+    height: 30,
     margin: 2,
     borderRadius: 3,
     borderColor: 'red',
     borderWidth: 3,
-    padding: 10,
+    padding: 5,
     borderColor: 'rgb(1, 204, 143)'
   },
   inactiveButton: {
+    borderRadius: 3,
+    width: 70,
+    height: 30,
     margin: 5,
-    padding: 10
+    padding: 5
   },
   pokemonText: {
     color: 'white'
