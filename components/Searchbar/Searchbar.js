@@ -3,6 +3,8 @@ import _ from 'lodash';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { updateSearch } from '../../redux/ducks/searchDuck';
+import { colorFromType } from '../../common/constants';
+import Filterbutton from './Filterbutton/Filterbutton';
 
 export default function Searchbar() {
   const dispatch = useDispatch();
@@ -18,13 +20,29 @@ export default function Searchbar() {
           placeholder='Search for pokemon . . .'
           onChangeText={text => delayedQuery(text)}
         />
-        <View style={styles.pokemonDropdownContainer}>
-          <Text>Dropdown</Text>
-        </View>
+      </View>
+      <View style={styles.pokemonDropdownContainer}>
+        <Text>Dropdown</Text>
       </View>
       <Text style={styles.filterText}>Filter by:</Text>
       <View style={styles.filterbuttonContainer}>
-        <Text>Buttons</Text>
+        <Filterbutton value='poison' />
+        <Filterbutton value='grass' />
+        <Filterbutton value='fire' />
+        <Filterbutton value='psychic' />
+        <Filterbutton value='normal' />
+        <Filterbutton value='fighting' />
+        <Filterbutton value='electric' />
+        <Filterbutton value='flying' />
+        <Filterbutton value='bug' />
+        <Filterbutton value='ground' />
+        <Filterbutton value='ice' />
+        <Filterbutton value='fairy' />
+        <Filterbutton value='rock' />
+        <Filterbutton value='dragon' />
+        <Filterbutton value='water' />
+        <Filterbutton value='steel' />
+        <Filterbutton value='ghost' />
       </View>
     </View>
   );
@@ -32,7 +50,11 @@ export default function Searchbar() {
 
 const styles = StyleSheet.create({
   searchbarContentContainer: {
-    marginBottom: 30
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginBottom: 10
   },
 
   searchbar: {
@@ -45,9 +67,10 @@ const styles = StyleSheet.create({
     display: 'flex',
     borderRadius: 30,
     padding: 10,
+    margin: 'auto',
     margin: 10,
     height: 45,
-    width: 250,
+    width: '80%',
     borderWidth: 1,
     borderColor: '#dadada',
     fontSize: 16
@@ -60,11 +83,10 @@ const styles = StyleSheet.create({
   },
 
   filterbuttonContainer: {
-    margin: 'auto',
-    width: '60%',
+    width: '80%',
+    flexDirection: 'row',
     display: 'flex',
     flexWrap: 'wrap',
-    alignContent: 'center',
     justifyContent: 'center'
   }
 });

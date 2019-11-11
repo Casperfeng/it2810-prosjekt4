@@ -41,6 +41,7 @@ export default function Pokemon(props) {
 
 const styles = StyleSheet.create({
   pokemonContainer: {
+    width: 300,
     flex: 1,
     flexDirection: 'row',
     padding: 10,
