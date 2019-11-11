@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import rootReducer from './redux/reducer/rootReducer';
 import PokemonList from './components/PokemonList/PokemonList';
+import Searchbar from './components/Searchbar/Searchbar';
 
 const middlewares = [thunk];
 const store = createStore(rootReducer, applyMiddleware(...middlewares));
@@ -14,6 +15,7 @@ export default function App() {
     <Provider store={store}>
       <View style={styles.container}>
         <Text>Testern</Text>
+        <Searchbar />
         <PokemonList />
       </View>
     </Provider>
@@ -22,8 +24,8 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 200,
     width: '100%',
-    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center'
