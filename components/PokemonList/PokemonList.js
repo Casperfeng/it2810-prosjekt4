@@ -19,27 +19,18 @@ export default function PokemonList() {
   }, [types, search, sortInfo]);
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={pokemon}
-        renderItem={({ item }) => (
-          <Pokemon
-            name={item.name}
-            id={item.id}
-            types={item.types}
-            views={item.views}
-          />
-        )}
-        keyExtractor={item => item._id}
-      />
-    </View>
+    <FlatList
+      showsVerticalScrollIndicator={false}
+      data={pokemon}
+      renderItem={({ item }) => (
+        <Pokemon
+          name={item.name}
+          id={item.id}
+          types={item.types}
+          views={item.views}
+        />
+      )}
+      keyExtractor={item => item._id}
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  pokemonListContainer: {
-    display: 'flex',
-    width: 'fit-content'
-  }
-});

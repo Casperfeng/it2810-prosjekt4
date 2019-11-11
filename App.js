@@ -15,7 +15,11 @@ export default function App() {
   return (
     <Provider store={store}>
       <View style={styles.container}>
+        <Text>Pokedex</Text>
         <Searchbar />
+        <View style={styles.pokemonListContainer}>
+          <PokemonList />
+        </View>
       </View>
       <PokemonModal
         modalInfo={{
@@ -32,10 +36,19 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 200,
+    marginTop: 150,
+    flex: 1,
+    position: 'relative',
     width: '100%',
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    height: 'auto'
+  },
+  pokemonListContainer: {
+    flex: 1
+  },
+  searchbarContainer: {
+    flex: 1
   }
 });
