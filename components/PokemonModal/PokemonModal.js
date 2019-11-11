@@ -1,0 +1,140 @@
+import React from 'react';
+import { StyleSheet, Image, Text, View } from 'react-native';
+import { colorFromType } from '../../common/constants';
+
+function PokemonModal(props) {
+  /**
+   * Returns the id formatted as three digits.
+   */
+  function formattedID() {
+    const id = props.modalInfo.id;
+    let toReturn = '';
+    if (id < 100) toReturn += '0';
+    if (id < 10) toReturn += '0';
+    return toReturn + id;
+  }
+
+  /**
+   * * Returns the type with the corresponding index. If no type exists, return an empty string;
+   */
+  function type(index) {
+    const types = props.modalInfo.types;
+    if (index >= types.length) return '';
+    return types[index];
+  }
+  return (
+    <View style={styles.modal}>
+      <View style={styles.modalheader}>
+        <Image
+          style={{ width: 30, height: 30 }}
+          source={require('../../assets/favorite_icon_off.png')}
+        ></Image>
+        <Text style={{ fontSize: 20 }}>#{formattedID()}</Text>
+        <Image
+          style={{ width: 30, height: 30 }}
+          source={require('../../assets/close_button.png')}
+        ></Image>
+      </View>
+      <Text style={styles.modalText}>{props.modalInfo.name}</Text>
+      <View style={styles.modalContainer}>
+        <Image
+          style={styles.modalImage}
+          source={{
+            uri:
+              'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' +
+              formattedID() +
+              '.png'
+          }}
+          alt={props.modalInfo.name}
+        />
+        <View style={styles.modalTypes}>
+          <Text style={styles.typeHeader}>Types</Text>
+          <Text
+            style={{
+              ...styles.typeText,
+              backgroundColor: colorFromType[type(0)]
+            }}
+          >
+            {type(0)}
+          </Text>
+          {type(1) != '' && (
+            <Text
+              style={{
+                ...styles.typeText,
+                backgroundColor: colorFromType[type(1)]
+              }}
+            >
+              {type(1)}
+            </Text>
+          )}
+        </View>
+      </View>
+      <View style={styles.modalStats}></View>
+    </View>
+  );
+}
+const styles = StyleSheet.create({
+  modal: {
+    display: 'flex',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    padding: 10,
+    justifyContent: 'space-between',
+    backgroundColor: 'white'
+  },
+  modalheader: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+    marginBottom: -20
+  },
+  viewsContainer: {
+    display: 'flex',
+    flexDirection: 'row'
+  },
+  modalText: {
+    textAlign: 'center',
+    fontSize: 30,
+    marginTop: 10,
+    textTransform: 'capitalize'
+  },
+  modalContainer: {
+    display: 'flex',
+    flexDirection: 'row'
+  },
+  modalImage: {
+    width: '50%',
+    aspectRatio: 1
+  },
+  modalTypes: {
+    width: '50%',
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    padding: 10
+  },
+  typeHeader: {
+    margin: 'auto',
+    textAlign: 'center',
+    fontSize: 20
+  },
+  typeText: {
+    margin: 'auto',
+    textAlign: 'center',
+    fontSize: 20,
+    borderRadius: 5,
+    color: 'white',
+    textTransform: 'capitalize'
+  },
+  modalStats: {
+    borderRadius: 5,
+    backgroundColor: '#3498db',
+    color: 'white',
+    height: '50%'
+  }
+});
+
+export default PokemonModal;

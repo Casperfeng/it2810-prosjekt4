@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import rootReducer from './redux/reducer/rootReducer';
 import PokemonList from './components/PokemonList/PokemonList';
 import Searchbar from './components/Searchbar/Searchbar';
+import PokemonModal from './components/PokemonModal/PokemonModal';
 
 const middlewares = [thunk];
 const store = createStore(rootReducer, applyMiddleware(...middlewares));
@@ -14,10 +15,17 @@ export default function App() {
   return (
     <Provider store={store}>
       <View style={styles.container}>
-        <Text>Testern</Text>
         <Searchbar />
-        <PokemonList />
       </View>
+      <PokemonModal
+        modalInfo={{
+          id: 1,
+          name: 'bulbasaur',
+          types: ['grass', 'poison'],
+          stats: [250, 5, 5, 35, 105, 50],
+          favorite: false
+        }}
+      ></PokemonModal>
     </Provider>
   );
 }
