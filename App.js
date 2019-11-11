@@ -15,7 +15,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <View style={styles.container}>
-        <Text>Pokedex</Text>
+        <Text style={styles.titleText}>Pokedex</Text>
         <Searchbar />
         <View style={styles.pokemonListContainer}>
           <PokemonList />
@@ -44,6 +44,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: 'auto'
+  },
+  titleText: {
+    fontSize: 36
   },
   pokemonListContainer: {
     flex: 1
