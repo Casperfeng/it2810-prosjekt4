@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableHighlight
-} from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import { openModal } from '../../../redux/ducks/modalDuck';
@@ -25,11 +19,21 @@ export default function Pokemon(props) {
     );
   }
 
+  /*
+   * Return a color for each type for LinearGradient.
+   * If there are only one type, then return that color twice.
+   */
+  function gradientColors() {
+    const color1 = colorFromType[props.types[0]];
+    const color2 = colorFromType[props.types[props.types.length - 1]];
+    return [color1, color2];
+  }
+
   return (
-    <TouchableHighlight onPress={_onPressListItem}>
+    <TouchableOpacity onPress={_onPressListItem}>
       <LinearGradient
-        colors={props.types.map(color => colorFromType[color])}
-        locations={props.types.length === 1 ? [1] : [0.15, 1.0]}
+        colors={gradientColors()}
+        locations={[0.15, 1.0]}
         style={styles.pokemonContainer}
       >
         <Image
@@ -43,7 +47,7 @@ export default function Pokemon(props) {
           <Text style={styles.pokemonDescription}>{`#${props.id}`}</Text>
         </View>
       </LinearGradient>
-    </TouchableHighlight>
+    </TouchableOpacity>
   );
 }
 
@@ -65,7 +69,8 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     marginTop: 16,
     fontSize: 22,
-    color: 'white'
+    color: 'white',
+    textTransform: 'capitalize'
   },
   pokemonDescription: {
     color: 'white',
