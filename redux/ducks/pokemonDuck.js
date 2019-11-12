@@ -42,6 +42,7 @@ export function fetchPokemonFailure() {
  *
  * @param skip er antall resultater i søket som skal hoppes over
  * @param types er en array av alle typene som skal bli inkludert i resultatet
+ * @param favorites er en array av alle (favoritt)pokemoner som skal være med i resultatet
  * @param search er en streng som spesifiserer hva navn til resulterende pokemon skal inneholde
  * @param sortParam spesifiserer hvordan pokemonene er sortert og derfor hvordan de hentes
  * @param {*} asc er true for stigende rekkefølge, false for synkende
@@ -50,6 +51,7 @@ export function fetchPokemonFailure() {
 export function fetchPokemon(
   skip = 0,
   types = [],
+  favorites = [],
   search = '',
   sortParam = '',
   asc = true,
@@ -58,15 +60,16 @@ export function fetchPokemon(
   const searchString = search ? `&name=${search}` : '';
   const sortString = sortParam ? `&sort=${sortParam}` : '';
   const orderString = asc ? '' : 'DESC';
-  let typesString = '';
-  for (let i = 0; i < types.length; i++) {
-    typesString += `&type${i === 0 ? '' : i}=${types[i]}`;
-  }
+  const typesString = types ? `&types=${JSON.stringify(types)}` : '[]';
+  const idListString = favorites
+    ? `&idList=${JSON.stringify(favorites)}`
+    : '[]';
   return dispatch =>
     axios
       .get(
-        `http://it2810-03.idi.ntnu.no:5000/pokemon/?skip=${skip +
+        `http://it2810-03.idi.ntnu.no:8080/api/v2/pokemon/?skip=${skip +
           typesString +
+          idListString +
           searchString +
           sortString +
           orderString}`
