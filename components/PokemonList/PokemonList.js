@@ -24,7 +24,7 @@ export default function PokemonList() {
       )
     );
     // eslint-disable-next-line
-  }, [types, search, sortInfo]);
+  }, [types, search, favorites, sortInfo]);
 
   return (
     <FlatList

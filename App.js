@@ -36,7 +36,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 150,
+    marginTop: 0,
     flex: 1,
     position: 'relative',
     width: '100%',

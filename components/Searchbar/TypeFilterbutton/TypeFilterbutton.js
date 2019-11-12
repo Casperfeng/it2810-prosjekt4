@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
     height: 34,
     margin: 2,
     borderRadius: 3,
-    borderColor: 'red',
     borderWidth: 3,
     padding: 6,
     borderColor: 'rgb(1, 204, 143)'
@@ -44,6 +43,7 @@ const styles = StyleSheet.create({
     padding: 6
   },
   pokemonText: {
-    color: 'white'
+    color: 'white',
+    textAlign: 'center'
   }
 });
