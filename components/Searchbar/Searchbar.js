@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  Image,
+  View,
+  TextInput,
+  TouchableOpacity
+} from 'react-native';
 import { useDispatch } from 'react-redux';
 import { updateSearch } from '../../redux/ducks/searchDuck';
 import FavoriteFilterbutton from './FavoriteFilterbutton/FavoriteFilterbutton';
@@ -13,6 +20,38 @@ export default function Searchbar() {
    * Brukes for å unngå unødvendige kall til backenden
    */
   const delayedQuery = _.debounce(q => dispatch(updateSearch(q)), 500);
+
+  const [show, setShow] = useState(false);
+  function moreOptions() {
+    return (
+      <>
+        <View style={styles.pokemonDropdownContainer}>
+          <PokemonPicker />
+        </View>
+        <Text style={styles.filterText}>Filter by:</Text>
+        <View style={styles.filterbuttonContainer}>
+          <FavoriteFilterbutton />
+          <TypeFilterbutton value='poison' />
+          <TypeFilterbutton value='grass' />
+          <TypeFilterbutton value='fire' />
+          <TypeFilterbutton value='psychic' />
+          <TypeFilterbutton value='normal' />
+          <TypeFilterbutton value='fighting' />
+          <TypeFilterbutton value='electric' />
+          <TypeFilterbutton value='flying' />
+          <TypeFilterbutton value='bug' />
+          <TypeFilterbutton value='ground' />
+          <TypeFilterbutton value='ice' />
+          <TypeFilterbutton value='fairy' />
+          <TypeFilterbutton value='rock' />
+          <TypeFilterbutton value='dragon' />
+          <TypeFilterbutton value='water' />
+          <TypeFilterbutton value='steel' />
+          <TypeFilterbutton value='ghost' />
+        </View>
+      </>
+    );
+  }
   return (
     <View style={styles.searchbarContentContainer}>
       <View style={styles.searchbar}>
@@ -22,30 +61,21 @@ export default function Searchbar() {
           onChangeText={text => delayedQuery(text)}
         />
       </View>
-      <View style={styles.pokemonDropdownContainer}>
-        <PokemonPicker />
-      </View>
-      <Text style={styles.filterText}>Filter by:</Text>
-      <View style={styles.filterbuttonContainer}>
-        <FavoriteFilterbutton />
-        <TypeFilterbutton value='poison' />
-        <TypeFilterbutton value='grass' />
-        <TypeFilterbutton value='fire' />
-        <TypeFilterbutton value='psychic' />
-        <TypeFilterbutton value='normal' />
-        <TypeFilterbutton value='fighting' />
-        <TypeFilterbutton value='electric' />
-        <TypeFilterbutton value='flying' />
-        <TypeFilterbutton value='bug' />
-        <TypeFilterbutton value='ground' />
-        <TypeFilterbutton value='ice' />
-        <TypeFilterbutton value='fairy' />
-        <TypeFilterbutton value='rock' />
-        <TypeFilterbutton value='dragon' />
-        <TypeFilterbutton value='water' />
-        <TypeFilterbutton value='steel' />
-        <TypeFilterbutton value='ghost' />
-      </View>
+      <TouchableOpacity
+        onPress={() => {
+          setShow(!show);
+        }}
+      >
+        <Image
+          style={{ width: 20, height: 20, marginBottom: 5 }}
+          source={
+            show
+              ? require('../../assets/arrow_up.png')
+              : require('../../assets/arrow_down.png')
+          }
+        />
+      </TouchableOpacity>
+      {show && moreOptions()}
     </View>
   );
 }
@@ -56,7 +86,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginBottom: 10
+    marginBottom: 5
   },
 
   searchbar: {
@@ -90,5 +120,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center'
+  },
+  pokemonDropdownContainer: {
+    width: '60%'
   }
 });

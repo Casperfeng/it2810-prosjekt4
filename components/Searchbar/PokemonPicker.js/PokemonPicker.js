@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { Picker, Text, StyleSheet, View } from 'react-native';
 import { useDispatch } from 'react-redux';
-import RNPickerSelect from 'react-native-picker-select';
 import { fireAction } from '../../../redux/ducks/sortDuck';
 
 export default function PokemonPicker() {
@@ -23,18 +22,17 @@ export default function PokemonPicker() {
 
   return (
     <View style={styles.pokemonPickerContainer}>
-      <Text style={styles.pokemonPickerTitle}>Sort order:</Text>
+      <Text style={styles.pokemonPickerTitle}>Sort by:</Text>
       <View style={styles.pokemonPicker}>
-        <RNPickerSelect
+        <Picker
           onValueChange={value => handleOptionSelect(value)}
           selectedValue={selectedValue}
-          items={[
-            { label: 'Lowest to highest id', value: 'id asc' },
-            { label: 'Highest to lowest id', value: 'id desc' },
-            { label: 'A to Z', value: 'name asc' },
-            { label: 'Z to A', value: 'name desc' }
-          ]}
-        />
+        >
+          <Picker.Item label='Lowest to highest id' value='id asc' />
+          <Picker.Item label='Highest to lowest id' value='id desc' />
+          <Picker.Item label='A to Z' value='name asc' />
+          <Picker.Item label='Z to A' value='name desc' />
+        </Picker>
       </View>
     </View>
   );
@@ -54,7 +52,6 @@ const styles = StyleSheet.create({
     width: '100%',
     borderWidth: 1,
     borderRadius: 4,
-    padding: 0,
     borderColor: '#dadada'
   }
 });
