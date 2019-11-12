@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { AsyncStorage, View, TouchableOpacity, Image } from 'react-native';
+import { updateFavorites } from '../../redux/ducks/favoritesDuck';
 
 export default function FavoriteButton(props) {
+  const dispatch = useDispatch();
   const key = 'favorites';
+  const favorites = useSelector(state => state.favorites);
   const favorite_icon_off = require('../../assets/favorite_icon_off.png');
   const favorite_icon_on = require('../../assets/favorite_icon_on.png');
   const [icon, setIcon] = useState('');
@@ -63,8 +67,7 @@ export default function FavoriteButton(props) {
     } else {
       await addFavorite();
     }
-    const favorites = await getFavorites();
-    console.log(favorites);
+    if (favorites.length !== 0) dispatch(updateFavorites(props.pokemonId));
   }
 
   /* AsyncStorage functions for storing, retrieving and removing item with favorites as key */

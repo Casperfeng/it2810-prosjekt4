@@ -8,15 +8,23 @@ export default function PokemonList() {
   const dispatch = useDispatch();
   const pokemon = useSelector(state => state.pokemon);
   const types = useSelector(state => state.types);
+  const favorites = useSelector(state => state.favorites);
   const search = useSelector(state => state.search);
   const sortInfo = useSelector(state => state.sortInfo);
 
   useEffect(() => {
     dispatch(
-      fetchPokemon(0, types, search, sortInfo.sortBy, sortInfo.ascending)
+      fetchPokemon(
+        0,
+        types,
+        favorites,
+        search,
+        sortInfo.sortBy,
+        sortInfo.ascending
+      )
     );
     // eslint-disable-next-line
-  }, [types, search, sortInfo]);
+  }, [types, search, favorites, sortInfo]);
 
   return (
     <FlatList
@@ -38,6 +46,7 @@ export default function PokemonList() {
           fetchPokemon(
             pokemon.length,
             types,
+            favorites,
             search,
             sortInfo.sortBy,
             sortInfo.ascending,
