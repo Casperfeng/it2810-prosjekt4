@@ -1,17 +1,17 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { updateType } from '../../../redux/ducks/typesDuck';
 import { colorFromType } from '../../../common/constants';
 
-export default function Filterbutton(props) {
+export default function TypeFilterbutton(props) {
   const dispatch = useDispatch();
   const types = useSelector(state => state.types);
   const clicked = types.includes(props.value);
   const typeColor = colorFromType[props.value];
   return (
     <View>
-      <TouchableHighlight
+      <TouchableOpacity
         style={
           clicked
             ? { backgroundColor: typeColor, ...styles.activeButton }
@@ -20,7 +20,7 @@ export default function Filterbutton(props) {
         onPress={() => dispatch(updateType(props.value))}
       >
         <Text style={styles.pokemonText}>{props.value}</Text>
-      </TouchableHighlight>
+      </TouchableOpacity>
     </View>
   );
 }
