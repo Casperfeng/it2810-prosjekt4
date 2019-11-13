@@ -27,13 +27,16 @@ export default function TypeFilterbutton(props) {
 
 const styles = StyleSheet.create({
   activeButton: {
-    width: 74,
-    height: 34,
-    margin: 2,
-    borderRadius: 3,
-    borderWidth: 3,
+    width: 70,
+    height: 30,
+    margin: 5,
     padding: 6,
-    borderColor: 'rgb(1, 204, 143)'
+    borderWidth: 3,
+    borderBottomColor: 'rgb(1, 204, 143)',
+    borderTopWidth: 0,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    borderRadius: 3
   },
   inactiveButton: {
     borderRadius: 3,
