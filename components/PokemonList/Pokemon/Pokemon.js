@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { LinearGradient } from 'expo-linear-gradient';
 import { openModal } from '../../../redux/ducks/modalDuck';
 import { colorFromType } from '../../../common/constants';
+import FavoriteButton from '../../FavoriteButton/FavoriteButton';
 
 export default function Pokemon(props) {
   const dispatch = useDispatch();
@@ -46,6 +47,15 @@ export default function Pokemon(props) {
           <Text style={styles.title}>{props.name}</Text>
           <Text style={styles.pokemonDescription}>{`#${props.id}`}</Text>
         </View>
+        <View
+          style={{
+            position: 'absolute',
+            top: -5,
+            left: -5
+          }}
+        >
+          <FavoriteButton pokemonId={props.id} />
+        </View>
       </LinearGradient>
     </TouchableOpacity>
   );
@@ -66,8 +76,8 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    marginLeft: 30,
-    marginTop: 16,
+    marginLeft: 20,
+    marginTop: 26,
     fontSize: 22,
     color: 'white',
     textTransform: 'capitalize'
@@ -75,11 +85,14 @@ const styles = StyleSheet.create({
   pokemonDescription: {
     color: 'white',
     width: '100%',
-    marginLeft: 30,
+    marginLeft: 20,
     fontSize: 18,
     fontStyle: 'italic'
   },
   pokemonPhoto: {
+    marginLeft: 20,
+    marginTop: 10,
+    marginBottom: 0,
     height: 100,
     width: 100
   }
