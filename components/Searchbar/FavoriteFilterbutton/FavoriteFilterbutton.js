@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { StyleSheet, Image, View, TouchableOpacity } from 'react-native';
 import { fetchFavorites } from '../../../redux/ducks/favoritesDuck';
 import { AsyncStorage } from 'react-native';
 
 export default function FavoriteFilterbutton() {
   const dispatch = useDispatch();
-  const [favorites, setFavorites] = useState([]);
+  const favorites = useSelector(state => state.favorites);
 
   // Retrieve favorites from AsyncStorage
   _retrieveFavorites = async () => {
@@ -14,9 +14,9 @@ export default function FavoriteFilterbutton() {
       const value = await AsyncStorage.getItem('favorites');
       // Returns each favorited pokemon and -1 to make sure list is non-empty
       if (value === null) {
-        setFavorites([-1]);
+        dispatch(fetchFavorites([-1]));
       } else {
-        setFavorites([-1, ...JSON.parse(value)]);
+        dispatch(fetchFavorites([-1, ...JSON.parse(value)]));
       }
     } catch (e) {
       console.log('Could not retrieve favorites from AsyncStorage.');
@@ -30,14 +30,9 @@ export default function FavoriteFilterbutton() {
 
   // Filter by favorites on click
   async function _onClick() {
-    if (favorites.length !== 0) setFavorites([]);
+    if (favorites.length !== 0) dispatch(fetchFavorites([]));
     else _retrieveFavorites();
   }
-
-  // Put favorites in redux
-  useEffect(() => {
-    dispatch(fetchFavorites(favorites));
-  }, [favorites]);
 
   return (
     <View>
