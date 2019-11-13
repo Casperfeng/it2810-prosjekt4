@@ -7,6 +7,7 @@ export default function FavoriteButton(props) {
   const dispatch = useDispatch();
   const key = 'favorites';
   const favorites = useSelector(state => state.favorites);
+  const modalInfo = useSelector(state => state.modalInfo);
   const favorite_icon_off = require('../../assets/favorite_icon_off.png');
   const favorite_icon_on = require('../../assets/favorite_icon_on.png');
   const [icon, setIcon] = useState('');
@@ -14,7 +15,7 @@ export default function FavoriteButton(props) {
   // Make sure icon is correct at the beginning
   useEffect(() => {
     changeIcon();
-  }, []);
+  }, [modalInfo.show]);
 
   // Change the icon to the correct one
   async function changeIcon() {
@@ -99,12 +100,12 @@ export default function FavoriteButton(props) {
   };
 
   return (
-    <View>
+    <>
       <TouchableOpacity onPress={onClick} style={{ width: 60, height: 60 }}>
-        {icon != '' && (
+        {icon !== '' && (
           <Image style={{ width: 60, height: 60 }} source={icon} />
         )}
       </TouchableOpacity>
-    </View>
+    </>
   );
 }
