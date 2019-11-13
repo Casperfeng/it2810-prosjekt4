@@ -43,8 +43,9 @@ export default function FavoriteFilterbutton() {
         onPress={_onClick}
       >
         <Image
+          style={styles.image}
           source={require('../../../assets/favorite_background.png')}
-        ></Image>
+        />
       </TouchableOpacity>
     </View>
   );
@@ -52,22 +53,27 @@ export default function FavoriteFilterbutton() {
 
 const styles = StyleSheet.create({
   activeButton: {
-    width: 74,
-    height: 34,
-    margin: 2,
-    borderRadius: 3,
-    borderColor: 'red',
-    borderWidth: 3,
-    padding: 1,
-    borderColor: 'rgb(1, 204, 143)',
-    backgroundColor: 'gray'
-  },
-  inactiveButton: {
-    borderRadius: 3,
     width: 70,
     height: 30,
     margin: 5,
-    padding: 2,
-    backgroundColor: '#9B9B9B'
+    padding: 3,
+    paddingBottom: 0,
+    backgroundColor: 'gray',
+    borderRadius: 3,
+    borderWidth: 0,
+    borderColor: 'rgb(1, 204, 143)',
+    borderBottomWidth: 3
+  },
+  inactiveButton: {
+    width: 70,
+    height: 30,
+    margin: 5,
+    borderRadius: 3,
+    borderWidth: 3,
+    borderColor: 'gray'
+  },
+  image: {
+    width: 64,
+    height: 24
   }
 });
