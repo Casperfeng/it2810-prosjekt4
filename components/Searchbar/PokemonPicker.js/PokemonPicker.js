@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Picker, Text, StyleSheet, View } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { fireAction } from '../../../redux/ducks/sortDuck';
 
 export default function PokemonPicker() {
   const dispatch = useDispatch();
-  const [selectedValue, setValue] = useState('id asc');
+  const sortInfo = useSelector(state => state.sortInfo);
 
   function handleOptionSelect(optionValue) {
     if (!optionValue) {
@@ -17,7 +17,6 @@ export default function PokemonPicker() {
     const optionArray = optionValue.split(' ');
     optionArray[1] = optionArray.includes('asc');
     dispatch(fireAction(optionArray[0], optionArray[1]));
-    setValue(optionValue);
   }
 
   return (
@@ -26,7 +25,9 @@ export default function PokemonPicker() {
       <View style={styles.pokemonPicker}>
         <Picker
           onValueChange={value => handleOptionSelect(value)}
-          selectedValue={selectedValue}
+          selectedValue={
+            sortInfo.sortBy + ' ' + (sortInfo.ascending ? 'asc' : 'desc')
+          }
         >
           <Picker.Item label='Lowest to highest id' value='id asc' />
           <Picker.Item label='Highest to lowest id' value='id desc' />
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
   pokemonPickerTitle: {
     color: 'gray',
     fontSize: 16,
-    marginBottom: 20
+    marginBottom: 5
   },
   pokemonPicker: {
     height: 'auto',
