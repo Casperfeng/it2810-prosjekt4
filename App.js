@@ -6,7 +6,6 @@ import thunk from 'redux-thunk';
 import rootReducer from './redux/reducer/rootReducer';
 import PokemonList from './components/PokemonList/PokemonList';
 import Searchbar from './components/Searchbar/Searchbar';
-import PokemonModal from './components/PokemonModal/PokemonModal';
 
 const middlewares = [thunk];
 const store = createStore(rootReducer, applyMiddleware(...middlewares));
@@ -15,28 +14,19 @@ export default function App() {
   return (
     <Provider store={store}>
       <View style={styles.container}>
-        <Text style={styles.titleText}>Pokedex</Text>
+        <Text style={styles.titleText}>Pokédex</Text>
         <Searchbar />
         <View style={styles.pokemonListContainer}>
           <PokemonList />
         </View>
       </View>
-      <PokemonModal
-        modalInfo={{
-          id: 1,
-          name: 'bulbasaur',
-          types: ['grass', 'poison'],
-          stats: [250, 5, 5, 35, 105, 50],
-          favorite: false
-        }}
-      ></PokemonModal>
     </Provider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 0,
+    marginTop: '10%',
     flex: 1,
     position: 'relative',
     width: '100%',
@@ -46,7 +36,8 @@ const styles = StyleSheet.create({
     height: 'auto'
   },
   titleText: {
-    fontSize: 36
+    fontSize: 36,
+    textAlign: 'center'
   },
   pokemonListContainer: {
     flex: 1

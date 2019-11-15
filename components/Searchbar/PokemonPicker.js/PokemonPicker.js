@@ -45,8 +45,9 @@ const styles = StyleSheet.create({
   },
   pokemonPickerTitle: {
     color: 'gray',
-    fontSize: 16,
-    marginBottom: 5
+    fontSize: 12,
+    marginBottom: 5,
+    marginTop: 15
   },
   pokemonPicker: {
     height: 'auto',

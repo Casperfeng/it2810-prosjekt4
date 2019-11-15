@@ -66,15 +66,19 @@ export default function Searchbar() {
           setShow(!show);
         }}
       >
-        <Image
-          style={{ width: 20, height: 20, marginBottom: 5 }}
-          source={
-            show
-              ? require('../../assets/arrow_up.png')
-              : require('../../assets/arrow_down.png')
-          }
-        />
+        <View style={styles.moreOptionsContainer}>
+          <Text style={styles.moreOptionsTitle}>More Options</Text>
+          <Image
+            style={styles.moreOptionsIcon}
+            source={
+              show
+                ? require('../../assets/arrow_up.png')
+                : require('../../assets/arrow_down.png')
+            }
+          />
+        </View>
       </TouchableOpacity>
+
       {show && moreOptions()}
     </View>
   );
@@ -102,14 +106,14 @@ const styles = StyleSheet.create({
     margin: 'auto',
     margin: 10,
     height: 45,
-    width: '100%',
     borderWidth: 1,
     borderColor: '#dadada',
-    fontSize: 16
+    fontSize: 16,
+    width: 200
   },
 
   filterText: {
-    fontSize: 16,
+    fontSize: 12,
     color: 'gray',
     marginTop: 20
   },
@@ -123,5 +127,22 @@ const styles = StyleSheet.create({
   },
   pokemonDropdownContainer: {
     width: '60%'
+  },
+
+  moreOptionsContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    textAlign: 'center',
+    margin: 'auto'
+  },
+  moreOptionsIcon: {
+    width: 35,
+    height: 35,
+    alignSelf: 'center'
+  },
+  moreOptionsTitle: {
+    fontSize: 12,
+    color: 'gray'
   }
 });
