@@ -25,16 +25,10 @@ export function openModal(
     name: ''
   }
 ) {
-  return dispatch =>
-    axios
-      .put(`http://it2810-03.idi.ntnu.no:5000/pokemon/${pokemon.id}`)
-      .then(() =>
-        dispatch({
-          type: OPEN_MODAL,
-          payload: pokemon
-        })
-      )
-      .catch(err => console.log(err));
+  return {
+    type: OPEN_MODAL,
+    payload: pokemon
+  };
 }
 
 export function closeModal() {
