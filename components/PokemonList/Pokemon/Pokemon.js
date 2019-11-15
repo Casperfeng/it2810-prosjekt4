@@ -48,13 +48,7 @@ export default function Pokemon(props) {
           <Text style={styles.title}>{props.name}</Text>
           <Text style={styles.pokemonDescription}>{`#${props.id}`}</Text>
         </View>
-        <View
-          style={{
-            position: 'absolute',
-            top: -5,
-            left: -5
-          }}
-        >
+        <View style={styles.favoriteButtonContainer}>
           <FavoriteButton pokemonId={props.id} />
         </View>
       </LinearGradient>
@@ -96,5 +90,10 @@ const styles = StyleSheet.create({
     marginBottom: 0,
     height: 100,
     width: 100
+  },
+  favoriteButtonContainer: {
+    position: 'absolute',
+    top: -5,
+    left: -5
   }
 });
