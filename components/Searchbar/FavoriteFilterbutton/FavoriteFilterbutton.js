@@ -8,7 +8,7 @@ export default function FavoriteFilterbutton() {
   const dispatch = useDispatch();
   const favorites = useSelector(state => state.favorites);
 
-  // Retrieve favorites from AsyncStorage
+  /* Retrieve favorites from AsyncStorage */
   _retrieveFavorites = async () => {
     try {
       const value = await AsyncStorage.getItem('favorites');
@@ -23,12 +23,12 @@ export default function FavoriteFilterbutton() {
     }
   };
 
-  // Returns whether or not to filter by favorites
+  /* Returns whether or not to filter by favorites */
   filterByFavorites = () => {
     return favorites.length !== 0;
   };
 
-  // Filter by favorites on click
+  /* Filter by favorites on click */
   async function _onClick() {
     if (favorites.length !== 0) dispatch(fetchFavorites([]));
     else _retrieveFavorites();

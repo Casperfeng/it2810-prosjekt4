@@ -20,12 +20,10 @@ import {
 
 export default function Searchbar() {
   const dispatch = useDispatch();
-  /**
-   * Brukes for å unngå unødvendige kall til backenden
-   */
+  /* Brukes for å unngå unødvendige kall til backenden */
   const delayedQuery = _.debounce(q => dispatch(updateSearch(q)), 500);
-
   const moreOptions = useSelector(state => state.moreOptions);
+
   function moreOptionsView() {
     return (
       <>

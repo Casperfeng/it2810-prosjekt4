@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { AuthSession } from 'expo';
 function PokemonStats(props) {
-  function getStats(name, index) {
+  /* Creates a statsView with 'name' as title and uses 'index' as index of stats */
+  function statsView(name, index) {
     return (
       <View style={styles.statContainer}>
         <Text style={styles.pokemonStatHeaderText}>{name}</Text>
@@ -22,12 +22,12 @@ function PokemonStats(props) {
 
   return (
     <View style={styles.statsContainer}>
-      {getStats('HP', 0)}
-      {getStats('Attack', 1)}
-      {getStats('Defence', 2)}
-      {getStats('Sp. Atk', 3)}
-      {getStats('Sp. Def', 4)}
-      {getStats('Speed', 5)}
+      {statsView('HP', 0)}
+      {statsView('Attack', 1)}
+      {statsView('Defence', 2)}
+      {statsView('Sp. Atk', 3)}
+      {statsView('Sp. Def', 4)}
+      {statsView('Speed', 5)}
     </View>
   );
 }

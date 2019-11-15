@@ -8,13 +8,12 @@ export default function PokemonPicker() {
   const dispatch = useDispatch();
   const sortInfo = useSelector(state => state.sortInfo);
 
+  /* Updates the redux when selected value changes*/
   function handleOptionSelect(optionValue) {
     if (!optionValue) {
       return;
     }
-    /**
-     * Maps values to be treated in sortReducer
-     */
+    //Maps values to be treated in sortReducer
     const optionArray = optionValue.split(' ');
     optionArray[1] = optionArray.includes('asc');
     dispatch(fireAction(optionArray[0], optionArray[1]));
