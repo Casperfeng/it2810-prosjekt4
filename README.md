@@ -38,7 +38,7 @@ NB! Disse pakkene er ikke nødvendige for å kjøre prosjektet, da backenden til
 - Nodemon - brukt for smidigere utvikling
 
 # Testing
-Vi utførte manuell end-to-end testing på IOS og Android enheter for å se om oppførselen for applikasjonen var lik på dem, i tillegg til å forsikre oss om at det ikke var noen åpenbare tekniske feil eller funksjonelle mangler. Dette gjorde vi ved å trykke og skrive inn på de ulike komponentene i appen og se om den oppførte seg som forventet. I tillegg så vi om det kom noen feilmeldinger i Expo-verktøyet.
+Vi utførte manuell end-to-end testing på IOS og Android enheter for å se om oppførselen for applikasjonen var lik på dem, i tillegg til å forsikre oss om at det ikke var noen åpenbare tekniske feil eller funksjonelle mangler. Dette gjorde vi ved å trykke og skrive inn på de ulike komponentene i appen og se om den oppførte seg som forventet. I tillegg så vi om det kom noen feilmeldinger i Expo-verktøyet. Vi har testet på Samsung S7 Edge og iPhone X.
 
 # Gjenbruksaspektet: React og React Native
 Vi valgte å basere appen på prosjekt 3, men la til favoritt-funksjonalitet. Dette førte til at vi kunne gjenbruke mye fra prosjekt 3, men måtte gjøre noen modifikasjoner for å støtte denne nye funksjonaliteten. I tillegg måtte vi gjøre noen endringer for at appen kunne være basert på React Native. Dette var blant annet at React Native ikke renderer HTML-elementer, men heller sine innebygde. Men mye av logikken kunne vi rett og slett kopiere og lime inn i det nye prosjektet. Av ulike grunner nevnt i følgende avsnitt kan vi trygt si at prosjekt 3 var svært gjenbrukbart.
