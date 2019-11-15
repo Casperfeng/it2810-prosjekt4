@@ -28,7 +28,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: '10%',
     flex: 1,
     position: 'relative',
     width: '100%',
@@ -38,7 +37,8 @@ const styles = StyleSheet.create({
     height: 'auto'
   },
   titleText: {
-    fontSize: 36,
+    marginTop: '10%',
+    fontSize: 32,
     textAlign: 'center'
   },
   pokemonListContainer: {
