@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import rootReducer from './redux/reducer/rootReducer';
 import PokemonList from './components/PokemonList/PokemonList';
 import Searchbar from './components/Searchbar/Searchbar';
+import PokemonModal from './components/PokemonModal/PokemonModal';
 
 const middlewares = [thunk];
 const store = createStore(rootReducer, applyMiddleware(...middlewares));
@@ -20,6 +21,7 @@ export default function App() {
           <PokemonList />
         </View>
       </View>
+      <PokemonModal />
     </Provider>
   );
 }
