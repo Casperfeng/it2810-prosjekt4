@@ -8,11 +8,15 @@ import {
   TextInput,
   TouchableOpacity
 } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { updateSearch } from '../../redux/ducks/searchDuck';
 import FavoriteFilterbutton from './FavoriteFilterbutton/FavoriteFilterbutton';
 import TypeFilterbutton from './TypeFilterbutton/TypeFilterbutton';
 import PokemonPicker from './PokemonPicker.js/PokemonPicker';
+import {
+  showPokemonList,
+  showMoreOptions
+} from '../../redux/ducks/contentDuck';
 
 export default function Searchbar() {
   const dispatch = useDispatch();
@@ -21,8 +25,8 @@ export default function Searchbar() {
    */
   const delayedQuery = _.debounce(q => dispatch(updateSearch(q)), 500);
 
-  const [show, setShow] = useState(false);
-  function moreOptions() {
+  const moreOptions = useSelector(state => state.moreOptions);
+  function moreOptionsView() {
     return (
       <>
         <View style={styles.pokemonDropdownContainer}>
@@ -63,7 +67,11 @@ export default function Searchbar() {
       </View>
       <TouchableOpacity
         onPress={() => {
-          setShow(!show);
+          if (moreOptions) {
+            dispatch(showPokemonList());
+          } else {
+            dispatch(showMoreOptions());
+          }
         }}
       >
         <View style={styles.moreOptionsContainer}>
@@ -71,7 +79,7 @@ export default function Searchbar() {
           <Image
             style={styles.moreOptionsIcon}
             source={
-              show
+              moreOptions
                 ? require('../../assets/arrow_up.png')
                 : require('../../assets/arrow_down.png')
             }
@@ -79,7 +87,7 @@ export default function Searchbar() {
         </View>
       </TouchableOpacity>
 
-      {show && moreOptions()}
+      {moreOptions && moreOptionsView()}
     </View>
   );
 }

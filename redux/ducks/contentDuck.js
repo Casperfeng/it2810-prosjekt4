@@ -1,13 +1,13 @@
 // Actions
-const SHOW_POKEMON = 'SHOW_POKEMON';
-const SHOW_WORD_CLOUD = 'SHOW_WORD_CLOUD';
+const SHOW_MORE_OPTIONS = 'SHOW_MORE_OPTIONS';
+const SHOW_POKEMON_LIST = 'SHOW_POKEMON_LIST';
 
 // Reducer
-export default function contentReducer(state = true, action) {
+export default function contentReducer(state = false, action) {
   switch (action.type) {
-    case SHOW_POKEMON:
+    case SHOW_MORE_OPTIONS:
       return true;
-    case SHOW_WORD_CLOUD:
+    case SHOW_POKEMON_LIST:
       return false;
     default:
       return state;
@@ -15,14 +15,14 @@ export default function contentReducer(state = true, action) {
 }
 
 // Action creator
-export function selectPokemon(showPokemon = true) {
+export function showMoreOptions() {
   return {
-    type: SHOW_POKEMON
+    type: SHOW_MORE_OPTIONS
   };
 }
 
-export function selectWordCloud(showPokemon = false) {
+export function showPokemonList() {
   return {
-    type: SHOW_WORD_CLOUD
+    type: SHOW_POKEMON_LIST
   };
 }
