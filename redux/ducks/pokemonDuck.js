@@ -39,7 +39,6 @@ export function fetchPokemonFailure() {
 }
 
 /**
- *
  * @param skip is the amount of results that should be skipped
  * @param types is an array of all types that should be included in the results
  * @param favorites is an array of all (favorite)pokemons that should be in the results

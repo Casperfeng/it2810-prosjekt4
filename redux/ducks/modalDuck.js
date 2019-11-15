@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 // Actions
 const OPEN_MODAL = 'OPEN_MODAL';
 const CLOSE_MODAL = 'CLOSE_MODAL';
