@@ -40,13 +40,13 @@ export function fetchPokemonFailure() {
 
 /**
  *
- * @param skip er antall resultater i søket som skal hoppes over
- * @param types er en array av alle typene som skal bli inkludert i resultatet
- * @param favorites er en array av alle (favoritt)pokemoner som skal være med i resultatet
- * @param search er en streng som spesifiserer hva navn til resulterende pokemon skal inneholde
- * @param sortParam spesifiserer hvordan pokemonene er sortert og derfor hvordan de hentes
- * @param {*} asc er true for stigende rekkefølge, false for synkende
- * @param {*} loadMore er true hvis fetchPokemon kalles fra <Loadingbutton/>, false ellers
+ * @param skip is the amount of results that should be skipped
+ * @param types is an array of all types that should be included in the results
+ * @param favorites is an array of all (favorite)pokemons that should be in the results
+ * @param search is an string that specify what each result must include in its name
+ * @param sortParam specifies how each pokemon is sortet and therefore how they should be fetched
+ * @param {*} asc is true for ascending order, false for descending order
+ * @param {*} loadMore is true if fetchPokemon is called by scrolling to the bottom, else it is false
  */
 export function fetchPokemon(
   skip = 0,

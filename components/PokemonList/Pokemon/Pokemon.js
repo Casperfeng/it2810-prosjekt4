@@ -9,6 +9,7 @@ import FavoriteButton from '../../FavoriteButton/FavoriteButton';
 export default function Pokemon(props) {
   const dispatch = useDispatch();
 
+  /* Opens the clicked pokemon's modal */
   function _onPressListItem() {
     dispatch(
       openModal({

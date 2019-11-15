@@ -16,9 +16,8 @@ function PokemonModal() {
   const dispatch = useDispatch();
   const modalInfo = useSelector(state => state.modalInfo);
   let modal = <View></View>;
-  /**
-   * Returns the id formatted as three digits.
-   */
+
+  /* Returns the id formatted as three digits.*/
   function formattedID() {
     const id = modalInfo.id;
     let toReturn = '';
@@ -27,15 +26,14 @@ function PokemonModal() {
     return toReturn + id;
   }
 
-  /**
-   * * Returns the type with the corresponding index. If no type exists, return an empty string;
-   */
+  /* Returns the type with the corresponding index. If no type exists, return an empty string; */
   function type(index) {
     const types = modalInfo.types;
     if (index >= types.length) return '';
     return types[index];
   }
 
+  /* Shows the modal when 'modalInfo.show' is true */
   if (modalInfo.show) {
     modal = (
       <View style={styles.modal}>

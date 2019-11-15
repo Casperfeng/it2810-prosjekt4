@@ -13,6 +13,7 @@ export default function PokemonList() {
   const search = useSelector(state => state.search);
   const sortInfo = useSelector(state => state.sortInfo);
 
+  /* Update the pokemon list when filter, search or sort changes */
   useEffect(() => {
     dispatch(
       fetchPokemon(
@@ -25,7 +26,7 @@ export default function PokemonList() {
       )
     );
     // eslint-disable-next-line
-  }, [types, search, favorites, sortInfo]);
+  }, [favorites, types, search, sortInfo]);
 
   return (
     <FlatList

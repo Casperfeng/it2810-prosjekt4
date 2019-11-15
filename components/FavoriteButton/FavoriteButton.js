@@ -12,12 +12,12 @@ export default function FavoriteButton(props) {
   const favorite_icon_on = require('../../assets/favorite_icon_on.png');
   const [icon, setIcon] = useState('');
 
-  // Make sure icon is correct at the beginning
+  /* Make sure icon is correct at the beginning */
   useEffect(() => {
     changeIcon();
   }, [modalInfo.show]);
 
-  // Change the icon to the correct one
+  /* Change the icon to the correct one */
   async function changeIcon() {
     if (await isFavorited()) {
       setIcon(favorite_icon_on);
@@ -26,7 +26,7 @@ export default function FavoriteButton(props) {
     }
   }
 
-  // Add pokemon to favorite
+  /* Add pokemon to favorite */
   async function addFavorite() {
     const favorites = await getFavorites();
     if (!favorites.includes(props.pokemonId)) {
@@ -36,7 +36,7 @@ export default function FavoriteButton(props) {
     setIcon(favorite_icon_on);
   }
 
-  // Get all of the mobile device's favorites
+  /* Get all of the mobile device's favorites */
   async function getFavorites() {
     const favorites = await _retrieveItem();
     if (favorites !== null) {
@@ -47,7 +47,7 @@ export default function FavoriteButton(props) {
     }
   }
 
-  // Remove pokemon from favorites
+  /* Remove pokemon from favorites */
   async function removeFavorite() {
     let favorites = await getFavorites();
     favorites = favorites.filter(el => el !== props.pokemonId);
@@ -55,13 +55,13 @@ export default function FavoriteButton(props) {
     setIcon(favorite_icon_off);
   }
 
-  // Return whether or not pokemon is favorited
+  /* Return whether or not pokemon is favorited */
   async function isFavorited() {
     const favorites = await getFavorites();
     return favorites.includes(props.pokemonId);
   }
 
-  // Remove/add pokemon to favorite when favorite button has been clicked
+  /* Remove/add pokemon to favorite when favorite button has been clicked */
   async function onClick() {
     if (await isFavorited()) {
       await removeFavorite();
@@ -72,7 +72,6 @@ export default function FavoriteButton(props) {
   }
 
   /* AsyncStorage functions for storing, retrieving and removing item with favorites as key */
-
   _storeItem = async value => {
     try {
       await AsyncStorage.setItem(key, JSON.stringify(value));
@@ -80,7 +79,6 @@ export default function FavoriteButton(props) {
       console.log('Saving error.');
     }
   };
-
   _retrieveItem = async () => {
     try {
       const value = await AsyncStorage.getItem(key);
@@ -90,7 +88,6 @@ export default function FavoriteButton(props) {
       console.log('Could not read value');
     }
   };
-
   _removeItem = async () => {
     try {
       await AsyncStorage.removeItem(key);
