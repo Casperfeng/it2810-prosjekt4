@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   favorites: favoritesDuck,
   search: searchReducer,
   modalInfo: modalReducer,
-  showPokemon: contentDuck,
+  moreOptions: contentDuck,
   sortInfo: sortDuck
 });
 

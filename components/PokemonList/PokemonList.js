@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FlatList } from 'react-native';
 import { fetchPokemon } from '../../redux/ducks/pokemonDuck';
 import Pokemon from './Pokemon/Pokemon';
+import { showPokemonList } from '../../redux/ducks/contentDuck';
 
 export default function PokemonList() {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ export default function PokemonList() {
         />
       )}
       keyExtractor={item => item._id}
+      onScrollBeginDrag={() => dispatch(showPokemonList())}
       //Fetches new pokemon dynamically by scrolling
       onEndReached={() =>
         dispatch(
