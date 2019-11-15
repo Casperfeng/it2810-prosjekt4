@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import _ from 'lodash';
 import {
   StyleSheet,
@@ -20,10 +20,20 @@ import {
 
 export default function Searchbar() {
   const dispatch = useDispatch();
-  /* Brukes for å unngå unødvendige kall til backenden */
-  const delayedQuery = _.debounce(q => dispatch(updateSearch(q)), 500);
   const moreOptions = useSelector(state => state.moreOptions);
+  /* Used to avoid excessive amount of calls to backend */
+  const delayedQuery = _.debounce(q => dispatch(updateSearch(q)), 500);
 
+  /* Toggle more options */
+  function toggleMoreOptions() {
+    if (moreOptions) {
+      dispatch(showPokemonList());
+    } else {
+      dispatch(showMoreOptions());
+    }
+  }
+
+  /* Get more options view */
   function moreOptionsView() {
     return (
       <>
@@ -54,6 +64,7 @@ export default function Searchbar() {
       </>
     );
   }
+
   return (
     <View style={styles.searchbarContentContainer}>
       <View style={styles.searchbar}>
@@ -63,15 +74,7 @@ export default function Searchbar() {
           onChangeText={text => delayedQuery(text)}
         />
       </View>
-      <TouchableOpacity
-        onPress={() => {
-          if (moreOptions) {
-            dispatch(showPokemonList());
-          } else {
-            dispatch(showMoreOptions());
-          }
-        }}
-      >
+      <TouchableOpacity onPress={toggleMoreOptions}>
         <View style={styles.moreOptionsContainer}>
           <Text style={styles.moreOptionsTitle}>More Options</Text>
           <Image

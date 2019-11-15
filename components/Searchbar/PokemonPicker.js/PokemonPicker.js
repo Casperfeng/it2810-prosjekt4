@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Text, StyleSheet, View } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { fireAction } from '../../../redux/ducks/sortDuck';
@@ -23,26 +23,22 @@ export default function PokemonPicker() {
     <View style={styles.pokemonPickerContainer}>
       <Text style={styles.pokemonPickerTitle}>Sort by:</Text>
       <View style={styles.pokemonPicker}>
-        <View style={styles.pokemonPicker}>
-          <RNPickerSelect
-            style={{
-              inputIOS: {
-                padding: 20
-              }
-            }}
-            onValueChange={value => handleOptionSelect(value)}
-            value={
-              sortInfo.sortBy + ' ' + (sortInfo.ascending ? 'asc' : 'desc')
+        <RNPickerSelect
+          style={{
+            inputIOS: {
+              padding: 20
             }
-            placeholder={{}}
-            items={[
-              { label: 'Lowest to highest id', value: 'id asc' },
-              { label: 'Highest to lowest id', value: 'id desc' },
-              { label: 'A to Z', value: 'name asc' },
-              { label: 'Z to A', value: 'name desc' }
-            ]}
-          />
-        </View>
+          }}
+          onValueChange={value => handleOptionSelect(value)}
+          value={sortInfo.sortBy + ' ' + (sortInfo.ascending ? 'asc' : 'desc')}
+          placeholder={{}}
+          items={[
+            { label: 'Lowest to highest id', value: 'id asc' },
+            { label: 'Highest to lowest id', value: 'id desc' },
+            { label: 'A to Z', value: 'name asc' },
+            { label: 'Z to A', value: 'name desc' }
+          ]}
+        />
       </View>
     </View>
   );

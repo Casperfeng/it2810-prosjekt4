@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { AsyncStorage, View, TouchableOpacity, Image } from 'react-native';
+import { AsyncStorage, TouchableOpacity, Image } from 'react-native';
 import { updateFavorites } from '../../redux/ducks/favoritesDuck';
 
 export default function FavoriteButton(props) {
