@@ -31,11 +31,9 @@ const styles = StyleSheet.create({
     height: 30,
     margin: 5,
     padding: 6,
-    borderWidth: 3,
+    borderWidth: 0,
     borderBottomColor: 'rgb(1, 204, 143)',
-    borderTopWidth: 0,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
+    borderBottomWidth: 3,
     borderRadius: 3
   },
   inactiveButton: {
